@@ -1,0 +1,45 @@
+
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica', sans-serif;
+}
+
+body {
+  width: 90%;
+  height: 100vh;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-y: scroll;
+  margin: 0 auto;
+  overflow-x: hidden;
+  color: var(--black-color);
+}
+
+@media (max-width: 500px) {
+  body {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/font/HelveticaRegular.eot');
+  src:
+    local('Helvetica Regular'),
+    local('Helvetica Regular'),
+    url('/font/HelveticaRegular.eot?#iefix') format('embedded-opentype'),
+    url('/font/HelveticaRegular.woff') format('woff'),
+    url('/font/HelveticaRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+
+
