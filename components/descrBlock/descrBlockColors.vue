@@ -2,14 +2,7 @@
   <div class="descr_block_colors">
     <p class="descr_block_colors_header">Цвет: {{ activeColor }}</p>
     <div class="descr_block_colors_wrapper">
-      <div
-        v-for="(color, index) in dressesColors"
-        :key="index"
-        class="descr_block_colors_item"
-        :class="{
-          active_color: activeColor === color
-        }"
-      >
+      <div v-for="(color, index) in dressesColors" :key="index" class="descr_block_colors_item">
         <div
           @click="setActiveColor(color)"
           class="descr_block_colors_item_square"
@@ -17,7 +10,8 @@
             white: color === 'белый',
             black: color === 'чёрный',
             red: color === 'красный',
-            beige: color === 'бежевый'
+            beige: color === 'бежевый',
+            active_color: activeColor === color
           }"
         ></div>
       </div>
@@ -53,7 +47,7 @@
     },
     watch: {
       colorOnPhoto: {
-        handler(newValue, oldValue) {
+        handler(newValue) {
           this.activeColor = newValue
         },
         immediate: true
@@ -71,7 +65,6 @@
 
     &_wrapper {
       display: flex;
-      cursor: pointer;
     }
 
     &_item {
@@ -88,6 +81,7 @@
       &_square {
         width: 28px;
         height: 27px;
+        cursor: pointer;
       }
     }
   }
@@ -113,6 +107,6 @@
   }
 
   .active_color {
-    border-bottom: 1px solid var(--grey-dark-color);
+    border: 2px solid var(--grey-dark-color);
   }
 </style>
