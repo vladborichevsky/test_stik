@@ -1,28 +1,53 @@
 <template>
-  <div class="header">
-    <div class="header_icons_mob">
-      <img src="/header/User.svg" alt="icon user" />
-      <img src="/header/Search.svg" alt="icon search" />
+  <header class="header" role="banner">
+    <!-- Мобильные иконки -->
+    <nav class="header__icons header__icons--mob" aria-label="Главное меню">
+      <button class="header__icon header__user" aria-label="Профиль пользователя">
+        <img src="/header/User.svg" alt="Профиль пользователя" />
+      </button>
+      <button class="header__icon header__search" aria-label="Поиск по сайту">
+        <img src="/header/Search.svg" alt="Поиск" />
+      </button>
+    </nav>
+
+    <div class="header__logo">
+      <a href="/" aria-label="Главная">
+        <img src="/header/logo_stik.svg" alt="Логотип Stik" />
+      </a>
     </div>
 
-    <img src="/header/logo_stik.svg" alt="logo stik" class="header_logo" />
-    <div class="header_icons">
-      <img src="/header/Search.svg" alt="icon search" id="search" />
-      <div class="bookmark">
-        <img src="/header/Bookmark.svg" alt="icon bookmarks" />
-        <div v-if="myBookmarks.length > 0" class="basket_length">{{ myBookmarks.length }}</div>
+    <!-- Десктопные иконки -->
+    <nav class="header__icons" aria-label="Ссылки на личный кабинет и корзину">
+      <button class="header__icon header__search" aria-label="Поиск по сайту">
+        <img src="/header/Search.svg" alt="Поиск" />
+      </button>
+
+      <div class="header__bookmark">
+        <button aria-label="Закладки">
+          <img src="/header/Bookmark.svg" alt="Закладки" class="header__icon" />
+          <span v-if="myBookmarks.length > 0" class="header__counter">{{
+            myBookmarks.length
+          }}</span>
+        </button>
       </div>
-      <img src="/header/User.svg" alt="icon user" id="user" />
-      <div class="basket">
-        <img src="/header/Basket.svg" alt="icon basket" />
-        <div v-if="myBasket.length > 0" class="basket_length">{{ myBasket.length }}</div>
+
+      <button class="header__icon header__user" aria-label="Профиль пользователя">
+        <img src="/header/User.svg" alt="Профиль пользователя" />
+      </button>
+
+      <div class="header__basket">
+        <button aria-label="Корзина">
+          <img src="/header/Basket.svg" alt="Корзина" class="header__icon" />
+          <span v-if="myBasket.length > 0" class="header__counter">{{ myBasket.length }}</span>
+        </button>
       </div>
-    </div>
-  </div>
+    </nav>
+  </header>
 </template>
 
 <script>
   import { mapState } from 'vuex'
+
   export default {
     computed: {
       ...mapState({
@@ -34,24 +59,25 @@
 </script>
 
 <style lang="scss" scoped>
+  button {
+    border: none;
+    background-color: inherit;
+  }
+
   .header {
     width: 100%;
     height: 86px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
-    &_logo {
+    &__logo {
       grid-column: 2 / 3;
       justify-self: center;
       align-self: center;
-
-      img {
-        width: 53px;
-      }
+      width: 53px;
     }
 
-    &_icons {
-      width: 100px;
+    &__icons {
       grid-column: 3 / 4;
       justify-self: end;
       align-self: center;
@@ -59,25 +85,29 @@
       justify-content: space-between;
       align-items: center;
 
-      img {
-        width: 20px;
-        cursor: pointer;
-      }
-
-      &_mob {
+      &--mob {
         display: none;
       }
     }
-  }
 
-  .basket,
-  .bookmark {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &__icon {
+      width: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 8px;
+    }
 
-    &_length {
+    &__bookmark,
+    &__basket {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__counter {
       position: absolute;
       bottom: -5px;
       left: 10px;
@@ -88,7 +118,7 @@
       line-height: 15px;
       font-size: 9px;
       background-color: var(--grey-dark-color);
-      color: #ffff;
+      color: #fff;
     }
   }
 
@@ -99,23 +129,23 @@
       margin: 0 auto;
     }
 
-    #search,
-    #user,
-    .bookmark {
-      display: none;
-    }
-
-    .header_icons {
+    .header__icons {
       justify-content: end;
+
+      &--mob {
+        grid-column: 1 / 2;
+        justify-self: start;
+        align-self: center;
+        display: flex;
+        width: 50px;
+        justify-content: space-between;
+      }
     }
 
-    .header_icons_mob {
-      grid-column: 1 / 2;
-      justify-self: start;
-      align-self: center;
-      display: flex;
-      width: 50px;
-      justify-content: space-between;
+    .header__search,
+    .header__user,
+    .header__bookmark {
+      display: none;
     }
   }
 </style>

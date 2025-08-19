@@ -1,17 +1,24 @@
 <template>
-  <div class="bookmarks" @click="setMyBookmarks(dressesID)">
+  <button
+    type="button"
+    class="bookmarks"
+    @click="setMyBookmarks(dressesID)"
+    :aria-pressed="alreadyInBookmarks"
+    :title="alreadyInBookmarks ? 'Убрать из Избранного' : 'Добавить в Избранное'"
+  >
     <img
       v-if="alreadyInBookmarks"
+      class="bookmarks__icon"
       src="/UI/bookmarks_active.svg"
-      alt=""
-      title="Убрать из Избранного"
+      alt="В избранном"
     />
-    <img v-else src="/UI/bookmarks.svg" alt="" title="Добавить в Избранное" />
-  </div>
+    <img v-else class="bookmarks__icon" src="/UI/bookmarks.svg" alt="Не в избранном" />
+  </button>
 </template>
 
 <script>
   import { mapState, mapMutations } from 'vuex'
+
   export default {
     computed: {
       ...mapState({
@@ -23,11 +30,7 @@
         return this.dressesArr[this.activeDress]?.id
       },
       alreadyInBookmarks() {
-        if (this.myBookmarks.some(item => item === this.dressesID)) {
-          return true
-        } else {
-          return false
-        }
+        return this.myBookmarks.some(item => item === this.dressesID)
       }
     },
     methods: {
@@ -42,13 +45,15 @@
   .bookmarks {
     width: 44px;
     height: 42px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid var(--dark-color);
+    cursor: pointer;
+    background: none;
+    padding: 0;
 
-    img {
+    &__icon {
       display: block;
       width: 24px;
     }

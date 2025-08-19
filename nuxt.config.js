@@ -1,5 +1,6 @@
 export default {
-  ssr: true,
+  ssr: false,
+  target: 'static',
   head: {
     meta: [{
       name: 'viewport',
@@ -9,6 +10,12 @@ export default {
   devtools: {
     enabled: false
   },
-  css: ['~/assets/main.scss'],
-  components: true
+  css: [
+    '~/assets/main.scss'
+  ],
+  components: true,
+  plugins: [{
+    src: '~/plugins/swiper.js',
+    mode: 'client'
+  }]
 }

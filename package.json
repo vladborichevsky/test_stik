@@ -6,6 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
+    "preview": "nuxt serve dist",
     "generate": "nuxt generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +17,13 @@
   "dependencies": {
     "-": "^0.0.1",
     "nuxt": "^2.18.1",
+    "swiper": "^5.4.5",
+    "vue-awesome-swiper": "^4.1.1"
+  },
+  "devDependencies": {
     "sass": "^1.90.0",
-    "sass-loader": "^10.5.2"
+    "sass-loader": "^10.5.2",
+    "vue-loader": "^15.10.0",
+    "webpack": "^4.46.0"
   }
 }

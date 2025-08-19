@@ -1,16 +1,18 @@
 <template>
-  <div class="container">
-    <div class="main_block">
+  <section class="page">
+    <div class="page__main">
       <my-slider />
       <descr-block />
     </div>
-    <similar-prod-block />
-  </div>
+
+    <section class="page__similar" aria-labelledby="similar-products-title">
+      <similar-prod-block />
+    </section>
+  </section>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  const url = '/product_list.json'
 
   export default {
     computed: {
@@ -19,7 +21,6 @@
         activeDress: state => state.activeDress
       })
     },
-
     methods: {
       async GetData(url) {
         try {
@@ -32,7 +33,6 @@
         }
       }
     },
-
     mounted() {
       this.$store.dispatch('fetchProducts')
     }
@@ -40,21 +40,26 @@
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    max-width: 1500px;
-  }
+  .page {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 100px;
 
-  .main_block {
-    display: flex;
-    gap: 50px;
+    &__main {
+      display: flex;
+      gap: 50px;
+    }
   }
 
   @media (max-width: 767px) {
-    .main_block {
-      flex-direction: column;
-      // justify-content: center;
-      align-items: center;
-      gap: 20px;
+    .page {
+      padding-bottom: 20px;
+
+      &__main {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
     }
   }
 </style>

@@ -1,41 +1,39 @@
 <template>
-  <div class="descr_block">
-    <div class="descr_block_top">
+  <section class="descr-block" aria-label="Описание товара">
+    <div class="descr-block__top">
       <div>
-        <div class="descr_block_top_name">{{ dressesName }}</div>
-        <div class="descr_block_top_price">
+        <h1 class="descr-block__name">{{ dressesName }}</h1>
+        <p class="descr-block__price">
           {{ dressesPrice?.new }} RUB
           <span v-if="dressesPrice?.old">{{ dressesPrice?.old }} RUB</span>
-        </div>
+        </p>
       </div>
-      <descr-block-sizes />
-      <descr-block-colors />
+      <sizes-block />
+      <colors-block />
     </div>
-
-    <div class="button_and_bookmarks">
+    <div class="descr-block__actions">
       <main-button>добавить в корзину</main-button>
-      <my-bookmarks id="bookmarks" />
+      <bookmarks-button />
     </div>
-
     <my-accordion />
-  </div>
+  </section>
 </template>
 
 <script>
   import { mapState } from 'vuex'
 
   import MainButton from './ui/mainButton.vue'
-  import MyBookmarks from './ui/myBookmarks.vue'
-  import DescrBlockSizes from './descrBlock/descrBlockSizes.vue'
-  import DescrBlockColors from './descrBlock/descrBlockColors.vue'
+  import bookmarksButton from './ui/bookmarksButton.vue'
+  import sizesBlock from './descrBlock/sizesBlock.vue'
+  import colorsBlock from './descrBlock/colorsBlock.vue'
   import myAccordion from './myAccordion.vue'
 
   export default {
     components: {
       MainButton,
-      MyBookmarks,
-      DescrBlockSizes,
-      DescrBlockColors,
+      bookmarksButton,
+      sizesBlock,
+      colorsBlock,
       myAccordion
     },
     computed: {
@@ -54,24 +52,25 @@
 </script>
 
 <style lang="scss" scoped>
-  .descr_block {
-    width: 50%;
+  .descr-block {
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: start;
-  }
 
-  .descr_block_top {
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    &__top {
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-    &_name,
-    &_price {
+    &__name,
+    &__price {
       text-transform: uppercase;
       font-size: 12px;
       line-height: 16px;
+      margin-bottom: 8px;
 
       span {
         margin-left: 10px;
@@ -79,38 +78,31 @@
         color: var(--grey-color);
       }
     }
-  }
 
-  .button_and_bookmarks {
-    display: flex;
-    justify-content: space-between;
-    width: 360px;
-    margin-top: 40px;
+    &__actions {
+      display: flex;
+      margin-top: 40px;
+    }
   }
 
   @media (max-width: 767px) {
-    .descr_block {
+    .descr-block {
       width: 70%;
       align-items: center;
     }
   }
 
   @media (max-width: 576px) {
-    .descr_block {
+    .descr-block {
       width: 80%;
       align-items: center;
     }
   }
 
   @media (max-width: 500px) {
-    .descr_block {
+    .descr-block {
       width: 90%;
       align-items: start;
-    }
-
-    .button_and_bookmarks {
-      width: 100%;
-      justify-content: space-around;
     }
   }
 </style>

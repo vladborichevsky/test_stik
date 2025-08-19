@@ -32,6 +32,8 @@
     text-transform: uppercase;
     font-size: 11px;
     cursor: pointer;
+    border: 1px solid var(--dark-color);
+    margin-right: 10px;
 
     &:hover {
       transition: all 0.3s;
@@ -40,9 +42,15 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 992px) {
     button {
-      width: 60%;
+      width: 250px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    button {
+      width: 220px;
     }
   }
 </style>

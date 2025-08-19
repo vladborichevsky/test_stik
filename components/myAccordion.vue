@@ -1,46 +1,61 @@
 <template>
-  <div>
-    <article class="descr_block_bottom" id="first_descr_block_bottom">
+  <section class="accordion">
+    <div class="accordion__item accordion__item--first">
       <button
+        id="accordion-button-descr"
         @click="toggleItem('descr')"
-        :class="['descr_block_bottom_btn', { open: openItem === 'descr' }]"
+        :class="['accordion__button', { 'accordion__button--open': openItem === 'descr' }]"
+        aria-expanded="openItem === 'descr'"
+        aria-controls="accordion-content-descr"
       >
         Описание
       </button>
-
       <div
-        class="descr_block_bottom_content"
-        :class="openItem === 'descr' ? 'expanded' : 'collapsed'"
+        id="accordion-content-descr"
+        class="accordion__content"
+        :class="{
+          'accordion__content--expanded': openItem === 'descr',
+          'accordion__content--collapsed': openItem !== 'descr'
+        }"
+        role="region"
+        :aria-labelledby="'accordion-button-descr'"
       >
-        <div class="descr_block_bottom_content_wrapper">
+        <div class="accordion__content-wrapper">
           {{ dressesDescr }}
         </div>
       </div>
-    </article>
-
-    <article class="descr_block_bottom">
+    </div>
+    <div class="accordion__item">
       <button
+        id="accordion-button-comp"
         @click="toggleItem('comp')"
         :class="[
-          'descr_block_bottom_btn',
-          { open: openItem === 'comp' },
-          { border_bottom: openItem !== 'comp' },
-          { border_top: openItem === 'descr' }
+          'accordion__button',
+          { 'accordion__button--open': openItem === 'comp' },
+          { 'accordion__button--border-bottom': openItem !== 'comp' },
+          { 'accordion__button--border-top': openItem === 'descr' }
         ]"
+        aria-expanded="openItem === 'comp'"
+        aria-controls="accordion-content-comp"
       >
         Состав и уход
       </button>
-
       <div
-        class="descr_block_bottom_content"
-        :class="openItem === 'comp' ? 'expanded' : 'collapsed'"
+        id="accordion-content-comp"
+        class="accordion__content"
+        :class="{
+          'accordion__content--expanded': openItem === 'comp',
+          'accordion__content--collapsed': openItem !== 'comp'
+        }"
+        role="region"
+        :aria-labelledby="'accordion-button-comp'"
       >
-        <div class="descr_block_bottom_content_wrapper">
+        <div class="accordion__content-wrapper">
           {{ dressesComp }}
         </div>
       </div>
-    </article>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -66,21 +81,23 @@
     },
     methods: {
       toggleItem(item) {
-        if (this.openItem === item) {
-          this.openItem = null // Закрываем, если уже открыт
-        } else {
-          this.openItem = item // Открываем, если был закрыт
-        }
+        this.openItem = this.openItem === item ? null : item
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .descr_block_bottom {
+  .accordion {
     width: 360px;
 
-    &_btn {
+    &__item {
+      &--first {
+        margin-top: 40px;
+      }
+    }
+
+    &__button {
       cursor: pointer;
       width: 100%;
       height: 41px;
@@ -105,31 +122,35 @@
         transition: transform 0.3s ease;
       }
 
-      &.open::after {
+      &--open::after {
         transform: rotate(135deg);
+      }
+
+      &--border-bottom {
+        border-bottom: 1px solid rgba(224, 224, 224, 1);
+      }
+
+      &--border-top {
+        border-top: 1px solid rgb(255, 255, 255);
       }
     }
 
-    &_content {
+    &__content {
       display: grid;
       overflow: hidden;
       transition: all 300ms ease-in-out;
-      .descr {
-        display: grid;
-        transition: all 300ms ease-in-out;
-      }
 
-      &.collapsed {
+      &--collapsed {
         grid-template-rows: 0fr;
         opacity: 0;
       }
 
-      &.expanded {
+      &--expanded {
         grid-template-rows: 1fr;
         opacity: 1;
       }
 
-      &_wrapper {
+      &-wrapper {
         overflow: hidden;
         text-align: justify;
         font-size: 12px;
@@ -137,20 +158,14 @@
     }
   }
 
-  .border_bottom {
-    border-bottom: 1px solid rgba(224, 224, 224, 1);
-  }
-
-  .border_top {
-    border-top: 1px solid rgb(255, 255, 255);
-  }
-
-  #first_descr_block_bottom {
-    margin-top: 40px;
+  @media (max-width: 992px) {
+    .accordion {
+      width: 90%;
+    }
   }
 
   @media (max-width: 500px) {
-    .descr_block_bottom {
+    .accordion {
       width: 100%;
     }
   }
