@@ -75,15 +75,16 @@
       justify-self: center;
       align-self: center;
       width: 53px;
+
+      img {
+        width: 100%;
+      }
     }
 
     &__icons {
       grid-column: 3 / 4;
       justify-self: end;
-      align-self: center;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       &--mob {
         display: none;
@@ -109,8 +110,8 @@
 
     &__counter {
       position: absolute;
-      bottom: -5px;
-      left: 10px;
+      bottom: 30px;
+      left: 15px;
       width: 15px;
       height: 15px;
       border-radius: 100%;
@@ -124,28 +125,45 @@
 
   @media (max-width: 500px) {
     .header {
-      width: 90%;
+      width: 100%;
       height: 50px;
       margin: 0 auto;
-    }
 
-    .header__icons {
-      justify-content: end;
-
-      &--mob {
-        grid-column: 1 / 2;
-        justify-self: start;
-        align-self: center;
-        display: flex;
-        width: 50px;
-        justify-content: space-between;
+      &__search,
+      &__user,
+      &__bookmark {
+        display: none;
       }
-    }
 
-    .header__search,
-    .header__user,
-    .header__bookmark {
-      display: none;
+      &__counter {
+        bottom: 10px;
+        left: 15px;
+      }
+
+      &__icons {
+        justify-content: end;
+
+        &--mob {
+          display: flex;
+          grid-column: 1 / 2;
+          justify-self: start;
+          margin-left: 8px;
+
+          .header__search,
+          .header__user {
+            display: block;
+            margin: 0 8px;
+          }
+        }
+      }
+
+      &__basket {
+        margin-right: 8px;
+      }
+
+      &__logo {
+        width: 38px;
+      }
     }
   }
 </style>

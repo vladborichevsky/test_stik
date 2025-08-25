@@ -44,7 +44,7 @@
 <style lang="scss" scoped>
   .bookmarks {
     width: 44px;
-    height: 42px;
+    height: 44px;
     display: flex;
     justify-content: center;
     align-items: center;

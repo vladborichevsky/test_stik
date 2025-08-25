@@ -40,6 +40,8 @@
 
 <style lang="scss" scoped>
   .sizes {
+    margin-top: 30px;
+
     &__header {
       font-size: 10px;
       line-height: 14px;

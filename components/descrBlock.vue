@@ -57,12 +57,11 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+    position: relative;
 
     &__top {
-      height: 200px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
 
     &__name,
@@ -87,7 +86,7 @@
 
   @media (max-width: 767px) {
     .descr-block {
-      width: 70%;
+      width: 80%;
       align-items: center;
     }
   }
@@ -103,6 +102,18 @@
     .descr-block {
       width: 90%;
       align-items: start;
+
+      &__actions {
+        margin: 0 auto;
+        margin-top: 30px;
+      }
+    }
+
+    .bookmarks {
+      position: absolute;
+      top: -15px;
+      right: 0;
+      border: none;
     }
   }
 </style>

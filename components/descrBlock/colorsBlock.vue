@@ -67,6 +67,8 @@
 
 <style lang="scss" scoped>
   .colors {
+    margin-top: 35px;
+
     &__header {
       font-size: 10px;
       line-height: 14px;

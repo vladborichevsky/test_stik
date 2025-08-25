@@ -140,7 +140,7 @@
       margin-top: 40px;
 
       &__list {
-        margin-top: 15px;
+        margin-top: 23px;
       }
     }
   }

@@ -232,7 +232,7 @@
     }
 
     @media (max-width: 767px) {
-      width: 70%;
+      width: 80%;
       gap: 0;
     }
 
