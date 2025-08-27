@@ -67,21 +67,20 @@
       font-size: 10px;
       line-height: 31px;
       text-transform: uppercase;
-      border: 1px solid var(--grey-light-color);
     }
 
     &__button {
-      width: 100%;
-      height: 100%;
+      display: block;
+      width: 65px;
+      height: 31px;
       border: none;
       background: none;
       cursor: default;
       font-size: 10px;
       text-transform: uppercase;
+      border: 1px solid var(--grey-light-color);
 
       &--allowed {
-        width: 100%;
-        height: 100%;
         cursor: pointer;
         color: var(--black-color);
         border: 1px solid var(--black-color);

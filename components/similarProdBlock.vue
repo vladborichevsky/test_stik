@@ -116,10 +116,6 @@
 
   @media (max-width: 576px) {
     .similar__card {
-      &-img {
-        border-radius: 6px;
-      }
-
       &-descr {
         font-size: 12px;
         line-height: 18px;
