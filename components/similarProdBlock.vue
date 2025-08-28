@@ -14,6 +14,9 @@
         <div class="similar__card-descr">
           <p class="similar__card-name">{{ item.name }}</p>
           <p class="similar__card-price">
+            <span v-if="item?.price?.old" class="similar__card-price-old-mob">
+              {{ item.price.old }} RUB
+            </span>
             {{ item.price.new }} RUB
             <span v-if="item?.price?.old" class="similar__card-price-old">
               {{ item.price.old }} RUB
@@ -87,12 +90,17 @@
 
       &-price {
         text-transform: uppercase;
+        font-size: 10px;
 
         &-old {
           margin-left: 8px;
           text-decoration: line-through;
           color: var(--grey-color);
-          font-size: 9px;
+
+          &-mob {
+            display: none;
+            text-decoration: line-through;
+          }
         }
       }
     }
@@ -137,6 +145,19 @@
 
       &__list {
         margin-top: 23px;
+      }
+
+      &__card-price {
+        color: var(--grey-color);
+
+        &-old {
+          display: none;
+
+          &-mob {
+            display: inline;
+            margin-right: 6px;
+          }
+        }
       }
     }
   }
